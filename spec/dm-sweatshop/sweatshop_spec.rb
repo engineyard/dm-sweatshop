@@ -73,7 +73,7 @@ describe DataMapper::Sweatshop do
 
       it "should call the attribute proc on each call to attributes" do
         calls = 0
-        proc = lambda {{:calls => (calls += 1)}}
+        proc = lambda { |_| {:calls => (calls += 1)}}
 
         DataMapper::Sweatshop.add(Parent, :default, &proc)
         DataMapper::Sweatshop.attributes(Parent, :default).should == {:calls => 1}
